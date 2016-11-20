@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuPerfil"
+            android:checked="false"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Perfil" />
+
+        <item
+            android:id="@+id/menuLisatdo"
+            android:checked="false"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Listado" />
+
+        <item
+            android:id="@+id/menuSesion"
+            android:checked="false"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Cerrar sesión" />
+    </group>
+
+</menu>
+
