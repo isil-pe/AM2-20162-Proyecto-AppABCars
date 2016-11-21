@@ -84,4 +84,10 @@ public class LoginPresenter {
         loginView.onMessageError(messageError);
     }
 
+    public void gotoRegister(){
+        loginView.showLoading();
+        loginView.hideLoading();
+        loginView.gotoRegister();
+    }
+
 }

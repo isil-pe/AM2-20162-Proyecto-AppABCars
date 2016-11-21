@@ -2,6 +2,8 @@ package com.isil.abcars.storage.request;
 
 import com.isil.abcars.storage.entity.LoginRaw;
 import com.isil.abcars.storage.entity.LoginResponse;
+import com.isil.abcars.storage.entity.RegisterRaw;
+import com.isil.abcars.storage.entity.RegisterResponse;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -45,10 +47,17 @@ public class ApiClient {
                 "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
                 "application-type: REST"
         })
-        //v1/users/login
         @POST("/v1/users/login")
         Call<LoginResponse> login(@Body LoginRaw raw);
 
+        @Headers({
+                "Content-Type: application/json",
+                "application-id: 80BC9F6A-858E-0D7B-FFC8-521538D16100",
+                "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
+                "application-type: REST"
+        })
+        @POST("/v1/data/users")
+        Call<RegisterResponse> addRegister(@Body RegisterRaw raw);
 
     }
 

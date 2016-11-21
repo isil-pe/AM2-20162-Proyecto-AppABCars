@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:gravity="center"
-    android:id="@+id/containerLogin"
+    android:id="@+id/containerRegister"
     tools:context="com.isil.abcars.LoginActivity">
 
     <LinearLayout
@@ -26,8 +26,22 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Correo"
+            android:hint="Nombre"
             android:layout_marginTop="50dp"
+            android:id="@+id/txtNombre"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Apellido"
+            android:id="@+id/txtApellido"/>
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Correo"
             android:id="@+id/txtCorreo"/>
 
         <EditText
@@ -45,20 +59,8 @@
             android:background="#c54830"
             android:textColor="#ffffff"
             android:textSize="18dp"
-            android:text="ENTRAR"
-            android:id="@+id/btnEntrar"/>
-
-        <TextView
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textColor="#c54830"
-            android:gravity="center"
-            android:textSize="16dp"
-            android:text="Resgitrate aquí"
-            android:clickable="true"
-            android:layout_margin="@dimen/activity_horizontal_margin"
-            android:id="@+id/btnRegistro"/>
+            android:text="REGISTAR"
+            android:id="@+id/btnRegistrar"/>
 
     </LinearLayout>
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.isil.abcars.presenter.LoginPresenter;
 import com.isil.abcars.presenter.LoginView;
@@ -16,6 +17,7 @@ import com.isil.abcars.storage.PreferencesHelper;
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
     private Button btnEntrar;
+    private TextView btnRegistro;
     private EditText txtCorreo, txtContrasena;
     private String correo, contrasena;
     private View containerLoading,containerLogin;
@@ -32,17 +34,27 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
 
         txtCorreo = (EditText)findViewById(R.id.txtCorreo);
         txtContrasena = (EditText)findViewById(R.id.txtContrasena);
-        btnEntrar=(Button)findViewById(R.id.btnEntrar);
+        btnEntrar = (Button)findViewById(R.id.btnEntrar);
+        btnRegistro = (TextView) findViewById(R.id.btnRegistro);
         containerLoading = findViewById(R.id.containerLoading);
         containerLogin = findViewById(R.id.containerLogin);
 
-        //Click Boton
+
+        //Click Boton Entrar
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (validateForm()) {
                     loginPresenter.login(correo, contrasena);
                 }
+            }
+        });
+
+        //Click Boton Registro
+        btnRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginPresenter.gotoRegister();
             }
         });
 
@@ -53,11 +65,11 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         contrasena = txtContrasena.getText().toString();
 
         if(correo.isEmpty()) {
-            txtCorreo.setError("El campo correo esta vacio.");
+            txtCorreo.setError("El campo correo está vacio.");
             return false;
         }
         if(contrasena.isEmpty()) {
-            txtContrasena.setError("El campo contraseña esta vacio.");
+            txtContrasena.setError("El campo contraseña está vacio.");
             return false;
         }
         return true;
@@ -95,7 +107,14 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     @Override
     public void gotoMain() {
         savePreferences();
-        Intent intent= new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void gotoRegister() {
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -1,16 +1,14 @@
-package com.isil.abcars.entity;
-
-import java.io.Serializable;
+package com.isil.abcars.storage.entity;
 
 /**
- * Created by em on 8/06/16.
+ * Created by MarcoTejeda on 20/11/16.
  */
-public class UserEntity implements Serializable {
+public class RegisterRaw {
+
     private String email;
     private String name;
     private String last_name;
-    private String objectId;
-    private String token;
+    private String password;
 
     public String getEmail() {
         return email;
@@ -36,19 +34,11 @@ public class UserEntity implements Serializable {
         this.last_name = last_name;
     }
 
-    public String getObjectId() {
-        return objectId;
+    public String getPassword() {
+        return password;
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

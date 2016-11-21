@@ -3,9 +3,9 @@ package com.isil.abcars.storage.entity;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by em on 8/06/16.
+ * Created by MarcoTejeda on 20/11/16.
  */
-public class LoginResponse {
+public class RegisterResponse {
 
     @SerializedName("___class")
     private String type;
@@ -78,4 +78,5 @@ public class LoginResponse {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }
