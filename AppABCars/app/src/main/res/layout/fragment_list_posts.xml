@@ -4,17 +4,10 @@
     android:layout_height="match_parent"
     tools:context=".view.fragments.ListPoststFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="ListadoPost"
-        android:gravity="center"
-        android:id="@+id/tsttest"
-        android:layout_height="match_parent" />
-
-    <!--<ListView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listPost"
-        android:layout_gravity="left|top" />-->
+        android:id="@+id/listPosts"
+        android:layout_gravity="left|top" />
 
 </FrameLayout>
