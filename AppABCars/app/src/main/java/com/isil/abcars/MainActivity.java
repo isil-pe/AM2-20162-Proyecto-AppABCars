@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity{
                     case R.id.menuPerfil:
                         Toast.makeText(getApplicationContext(),"Perfil Selected",Toast.LENGTH_SHORT).show();
                         return true;
+                    case R.id.menuMarcas:
+                        Toast.makeText(getApplicationContext(),"Marcas Selected",Toast.LENGTH_SHORT).show();
+                        return true;
                     case R.id.menuLisatdo:
                         Toast.makeText(getApplicationContext(),"Listado Selected",Toast.LENGTH_SHORT).show();
                         return true;

@@ -9,6 +9,12 @@
             android:title="Perfil" />
 
         <item
+            android:id="@+id/menuMarcas"
+            android:checked="false"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Marcas" />
+
+        <item
             android:id="@+id/menuLisatdo"
             android:checked="false"
             android:icon="@mipmap/ic_launcher"
