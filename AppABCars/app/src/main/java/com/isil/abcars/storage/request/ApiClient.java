@@ -1,5 +1,6 @@
 package com.isil.abcars.storage.request;
 
+import com.isil.abcars.storage.entity.ListPostsResponse;
 import com.isil.abcars.storage.entity.LoginRaw;
 import com.isil.abcars.storage.entity.LoginResponse;
 import com.isil.abcars.storage.entity.MarcaResponse;
@@ -12,6 +13,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
@@ -71,6 +73,16 @@ public class ApiClient {
         })
         @POST("/v1/data/users")
         Call<RegisterResponse> addRegister(@Body RegisterRaw raw);
+
+
+        @Headers({
+                "Content-Type: application/json",
+                "application-id: 80BC9F6A-858E-0D7B-FFC8-521538D16100",
+                "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
+                "application-type: REST"
+        })
+        @GET("/v1/data/post")
+        Call<ListPostsResponse> listarPosts();
 
     }
 

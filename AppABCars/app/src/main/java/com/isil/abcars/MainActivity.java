@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.isil.abcars.storage.PreferencesHelper;
-import com.isil.abcars.view.adapters.PostAdapter;
+import com.isil.abcars.view.adapters.ListPostsAdapter;
 
 import com.isil.abcars.view.fragments.PerfilFragment;
 
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationListe
 
     private static final String TAG ="MainActivity";
 
-    private PostAdapter postAdapter;
+    private ListPostsAdapter postAdapter;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;

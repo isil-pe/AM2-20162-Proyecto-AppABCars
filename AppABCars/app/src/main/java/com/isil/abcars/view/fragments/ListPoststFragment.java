@@ -3,13 +3,27 @@ package com.isil.abcars.view.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.isil.abcars.R;
+import com.isil.abcars.entity.MarcaEntity;
+import com.isil.abcars.entity.PostEntity;
+import com.isil.abcars.storage.entity.ListPostsResponse;
+import com.isil.abcars.storage.entity.MarcaResponse;
+import com.isil.abcars.storage.request.ApiClient;
+import com.isil.abcars.view.adapters.ListPostsAdapter;
 import com.isil.abcars.view.listeners.OnNavigationListener;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ListPoststFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -21,7 +35,9 @@ public class ListPoststFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView tsttest;
+    private ListView listPosts;
+    private PostEntity postEntity;
+    private ListPostsAdapter listPostsAdapter;
 
     private OnNavigationListener mListener;
 
@@ -78,7 +94,45 @@ public class ListPoststFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        tsttest=(TextView) getView().findViewById(R.id.tsttest);
+        listPosts = (ListView) getView().findViewById(R.id.listPosts);
+
+
+        /// Traemos el listado del backeles
+        Call<ListPostsResponse> call = ApiClient.getMyApiClient().listarPosts();
+        call.enqueue(new Callback<ListPostsResponse>() {
+            @Override
+            public void onResponse(Call<ListPostsResponse> call, Response<ListPostsResponse> response) {
+                if(response.isSuccessful()){
+                    //marcasSuccess(response.body());
+                    ListPostsResponse lpr = response.body();
+                    List<PostEntity> postEntities = lpr.getData();
+
+                    listPostsAdapter = new ListPostsAdapter(getContext(), postEntities);
+                    listPosts.setAdapter(listPostsAdapter);
+
+
+                }else {
+                    //marcasError(ERROR_MESSAGE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ListPostsResponse> call, Throwable t) {
+                String json = "Error";
+                try{
+                    json = new StringBuffer().append(t.getMessage()).toString();
+                }catch (NullPointerException e) {}
+                Log.v("FRAGMENT POSTS", "json marca>>>>> " + json);
+
+                //marcasError(json);
+            }
+        });
+
+        //crudOperations= new CRUDOperations(new MyDatabase(this));
+       // postEntity =
+
+        //listPostsAdapter = new ListPostsAdapter(getContext(), postEntity);
+        //listPosts.setAdapter(listPostsAdapter);
 
 
     }

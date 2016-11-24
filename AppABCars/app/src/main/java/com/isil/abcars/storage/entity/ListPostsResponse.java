@@ -1,9 +1,21 @@
-package com.isil.abcars.entity;
+package com.isil.abcars.storage.entity;
+
+import com.google.gson.annotations.SerializedName;
+import com.isil.abcars.entity.MarcaEntity;
+import com.isil.abcars.entity.PostEntity;
+
+import java.util.List;
 
 /**
- * Created by MarcoTejeda on 16/11/16.
+ * Created by em on 8/06/16.
  */
-public class PostEntity {
+public class ListPostsResponse {
+
+    @SerializedName("___class")
+    private String type;
+
+    @SerializedName("user-token")
+    private String token;
 
     private String anio;
     private String cilindrada;
@@ -22,6 +34,28 @@ public class PostEntity {
     private String puertas;
     private String titulo;
     private String transmision;
+
+    private int offset;
+    private List<PostEntity> data;
+
+    private Object nextPage;
+    private int totalObjects;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public String getAnio() {
         return anio;
@@ -157,5 +191,37 @@ public class PostEntity {
 
     public void setTransmision(String transmision) {
         this.transmision = transmision;
+    }
+
+    public int getOffset() {
+        return offset;
+    }
+
+    public void setOffset(int offset) {
+        this.offset = offset;
+    }
+
+    public List<PostEntity> getData() {
+        return data;
+    }
+
+    public void setData(List<PostEntity> data) {
+        this.data = data;
+    }
+
+    public Object getNextPage() {
+        return nextPage;
+    }
+
+    public void setNextPage(Object nextPage) {
+        this.nextPage = nextPage;
+    }
+
+    public int getTotalObjects() {
+        return totalObjects;
+    }
+
+    public void setTotalObjects(int totalObjects) {
+        this.totalObjects = totalObjects;
     }
 }

@@ -17,12 +17,12 @@ import java.util.List;
 /**
  * Created by MarcoTejeda on 16/11/16.
  */
-public class PostAdapter extends BaseAdapter{
+public class ListPostsAdapter extends BaseAdapter{
 
     private Context context;
-    private ArrayList<PostEntity> lsPostEntities;
+    private List<PostEntity> lsPostEntities;
 
-    public PostAdapter(Context context, ArrayList<PostEntity> lsNoteEntities) {
+    public ListPostsAdapter(Context context, List<PostEntity> lsNoteEntities) {
         this.context = context;
         this.lsPostEntities = lsNoteEntities;
     }
