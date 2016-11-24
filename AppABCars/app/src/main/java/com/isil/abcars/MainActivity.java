@@ -137,7 +137,11 @@ public class MainActivity extends AppCompatActivity implements OnNavigationListe
         Fragment fragment=null;
         switch (i){
             case 0:
+                String username = PreferencesHelper.getUserSession(this);
+                Bundle bundle= new Bundle();
+                bundle.putSerializable("USERNAME",username);
                 fragment = new PerfilFragment();
+                fragment.setArguments(bundle);
                 break;
             case 1:
                 //fragment

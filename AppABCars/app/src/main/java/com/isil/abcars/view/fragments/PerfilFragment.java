@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.isil.abcars.R;
 import com.isil.abcars.view.listeners.OnNavigationListener;
@@ -59,6 +60,9 @@ public class PerfilFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+
         }
     }
 
@@ -86,6 +90,19 @@ public class PerfilFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if(getArguments()!=null)
+        {
+            String username = (String)getArguments().getSerializable("USERNAME");
+            ((EditText)getView().findViewById(R.id.txtNombre)).setText(username);
+        }
+
+
     }
 
 
