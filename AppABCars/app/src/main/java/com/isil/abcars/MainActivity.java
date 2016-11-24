@@ -2,6 +2,8 @@ package com.isil.abcars;
 
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.isil.abcars.storage.PreferencesHelper;
 import com.isil.abcars.view.adapters.PostAdapter;
+import com.isil.abcars.view.fragments.ListPoststFragment;
+import com.isil.abcars.view.listeners.OnNavigationListener;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements OnNavigationListener {
 
     private static final String TAG ="MainActivity";
 
@@ -56,13 +59,13 @@ public class MainActivity extends AppCompatActivity{
                 switch (menuItem.getItemId()) {
 
                     case R.id.menuPerfil:
-                        Toast.makeText(getApplicationContext(),"Perfil Selected",Toast.LENGTH_SHORT).show();
+                        changeFragment(0);
                         return true;
                     case R.id.menuMarcas:
-                        Toast.makeText(getApplicationContext(),"Marcas Selected",Toast.LENGTH_SHORT).show();
+                        changeFragment(1);
                         return true;
                     case R.id.menuLisatdo:
-                        Toast.makeText(getApplicationContext(),"Listado Selected",Toast.LENGTH_SHORT).show();
+                        changeFragment(2);
                         return true;
                     case R.id.menuSesion:
                         logout();
@@ -124,6 +127,26 @@ public class MainActivity extends AppCompatActivity{
         PreferencesHelper.signOut(this);
         startActivity(new Intent(this, LoginActivity.class));
         finish();
+    }
+
+    private void changeFragment(int i) {
+        Fragment fragment=null;
+        switch (i){
+            case 0:
+                //fragment
+                break;
+            case 1:
+                //fragment
+                break;
+            case 2:
+                fragment = new ListPoststFragment();
+                break;
+        }
+        if(fragment!=null){
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frameMain,fragment);
+            fragmentTransaction.commit();
+        }
     }
 
 }
