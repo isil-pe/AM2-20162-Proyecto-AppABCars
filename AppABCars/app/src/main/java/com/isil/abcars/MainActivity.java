@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.isil.abcars.storage.PreferencesHelper;
 import com.isil.abcars.view.adapters.PostAdapter;
+import com.isil.abcars.view.fragments.PerfilFragment;
 
 
 public class MainActivity extends AppCompatActivity{
