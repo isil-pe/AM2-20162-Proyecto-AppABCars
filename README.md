@@ -3,6 +3,6 @@ Moviles 2, Proyecto final - Isil 2016-2
 
 
 Integrates:
-- Marco Tejeda
-- Mauricio Medina
-- Francisco Paredes
+- Marco Tejeda.
+- Mauricio Medina.
+- Francisco Paredes.
