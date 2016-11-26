@@ -4,6 +4,8 @@ import com.isil.abcars.storage.entity.ListPostsResponse;
 import com.isil.abcars.storage.entity.LoginRaw;
 import com.isil.abcars.storage.entity.LoginResponse;
 import com.isil.abcars.storage.entity.MarcaResponse;
+import com.isil.abcars.storage.entity.PerfilRaw;
+import com.isil.abcars.storage.entity.PerfilResponse;
 import com.isil.abcars.storage.entity.RegisterRaw;
 import com.isil.abcars.storage.entity.RegisterResponse;
 
@@ -16,6 +18,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 
 public class ApiClient {
@@ -64,7 +67,6 @@ public class ApiClient {
         Call<MarcaResponse> marcas();
 
 
-
         @Headers({
                 "Content-Type: application/json",
                 "application-id: 80BC9F6A-858E-0D7B-FFC8-521538D16100",
@@ -73,6 +75,25 @@ public class ApiClient {
         })
         @POST("/v1/data/users")
         Call<RegisterResponse> addRegister(@Body RegisterRaw raw);
+
+        @Headers({
+                "Content-Type: application/json",
+                "application-id: 80BC9F6A-858E-0D7B-FFC8-521538D16100",
+                "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
+                "application-type: REST"
+        })
+        @POST("/v1/users/login")
+        Call<PerfilResponse> getPerfil(@Body PerfilRaw raw);
+
+
+        @Headers({
+                "Content-Type: application/json",
+                "application-id: 80BC9F6A-858E-0D7B-FFC8-521538D16100",
+                "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
+                "application-type: REST"
+        })
+        @PUT("v1/data/users")
+        Call<PerfilResponse> setPerfil(@Body PerfilRaw raw);
 
 
         @Headers({
@@ -83,6 +104,7 @@ public class ApiClient {
         })
         @GET("/v1/data/post")
         Call<ListPostsResponse> listarPosts();
+
 
     }
 

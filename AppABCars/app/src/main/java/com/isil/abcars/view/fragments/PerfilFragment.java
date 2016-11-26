@@ -4,13 +4,29 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.isil.abcars.R;
+import com.isil.abcars.entity.PostEntity;
+import com.isil.abcars.entity.UserEntity;
+import com.isil.abcars.storage.entity.ListPostsResponse;
+import com.isil.abcars.storage.entity.PerfilRaw;
+import com.isil.abcars.storage.entity.PerfilResponse;
+import com.isil.abcars.storage.entity.RegisterRaw;
+import com.isil.abcars.storage.request.ApiClient;
+import com.isil.abcars.view.adapters.ListPostsAdapter;
 import com.isil.abcars.view.listeners.OnNavigationListener;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +47,19 @@ public class PerfilFragment extends Fragment {
     private String mParam2;
 
     private OnNavigationListener mListener;
+
+    private EditText eteNombre;
+    private EditText eteApellido;
+    private EditText eteEmail;
+    private EditText etePassword;
+    private Button btnActualizarPerfil;
+
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String password;
+
+    private PerfilResponse lpr;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -60,9 +89,6 @@ public class PerfilFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-
-
         }
     }
 
@@ -72,8 +98,6 @@ public class PerfilFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
-
-
 
     @Override
     public void onAttach(Context context) {
@@ -98,12 +122,88 @@ public class PerfilFragment extends Fragment {
 
         if(getArguments()!=null)
         {
-            String username = (String)getArguments().getSerializable("USERNAME");
-            ((EditText)getView().findViewById(R.id.txtNombre)).setText(username);
+            String emailPreferences = (String)getArguments().getSerializable("USERNAME");
+            String passwordPreferences = (String)getArguments().getSerializable("PASSWORD");
+
+            ((EditText)getView().findViewById(R.id.txtCorreo)).setText(emailPreferences);
+            ((EditText)getView().findViewById(R.id.txtContrasena)).setText(passwordPreferences);
+
+            PerfilRaw perfilRaw = new PerfilRaw();
+            perfilRaw.setLogin(emailPreferences);
+            perfilRaw.setPassword(passwordPreferences);
+
+            Call<PerfilResponse> call = ApiClient.getMyApiClient().getPerfil(perfilRaw);
+            call.enqueue(new Callback<PerfilResponse>() {
+                @Override
+                public void onResponse(Call<PerfilResponse> call, Response<PerfilResponse> response) {
+                    if(response.isSuccessful()){
+                        lpr = response.body();
+
+                        ((EditText)getView().findViewById(R.id.txtNombre)).setText(lpr.getName());
+                        ((EditText)getView().findViewById(R.id.txtApellido)).setText(lpr.getLast_name());
+
+                    }else {
+                        //marcasError(ERROR_MESSAGE);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PerfilResponse> call, Throwable t) {
+                    String json = "Error";
+                    try{
+                        json = new StringBuffer().append(t.getMessage()).toString();
+                    }catch (NullPointerException e) {}
+                    Log.v("FRAGMENT PERFIL", "json marca>>>>> " + json);
+                }
+            });
         }
 
-
+        btnActualizarPerfil =(Button)getView().findViewById(R.id.btnActualizar);
+        btnActualizarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActualizarPerfil();
+            }
+        });
     }
 
+    public void ActualizarPerfil()
+    {
+        nombre = ((EditText)getView().findViewById(R.id.txtNombre)).getText().toString();
+        apellido = ((EditText)getView().findViewById(R.id.txtApellido)).getText().toString();
+        email = ((EditText)getView().findViewById(R.id.txtCorreo)).getText().toString();
+        password = ((EditText)getView().findViewById(R.id.txtContrasena)).getText().toString();
+
+        PerfilRaw perfilRaw = new PerfilRaw();
+        perfilRaw.setName(nombre);
+        perfilRaw.setLast_name(apellido);
+        perfilRaw.setEmail(email);
+        perfilRaw.setPassword(password);
+        perfilRaw.setObjectId(lpr.getObjectId());
+
+
+        Call<PerfilResponse> call = ApiClient.getMyApiClient().setPerfil(perfilRaw);
+        call.enqueue(new Callback<PerfilResponse>() {
+            @Override
+            public void onResponse(Call<PerfilResponse> call, Response<PerfilResponse> response) {
+                if(response.isSuccessful()) {
+                    //loginSuccess();
+                } else {
+                    //loginError(ERROR_MESSAGE);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PerfilResponse> call, Throwable t) {
+                String json = "Error ";
+                try {
+                    json = new StringBuffer().append(t.getMessage()).toString();
+                } catch (NullPointerException e) {
+                }
+                //Log.v(TAG, "json >>>> " + json);
+                //loginError(json);
+            }
+        });
+    }
 
 }

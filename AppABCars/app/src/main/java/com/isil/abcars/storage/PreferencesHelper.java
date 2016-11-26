@@ -36,6 +36,13 @@ public class PreferencesHelper {
         return username;
     }
 
+    public static String getUserPasswordSession(Context context)
+    {
+        SharedPreferences sharedPreferences= getSharedPreferences(context);
+        String password = sharedPreferences.getString(PREFERENCES_PASSWORD, null);
+        return password;
+    }
+
     public static boolean isSignedIn(Context context) {
         final SharedPreferences preferences = getSharedPreferences(context);
         return preferences.contains(PREFERENCES_USERNAME) &&

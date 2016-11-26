@@ -138,17 +138,22 @@ public class MainActivity extends AppCompatActivity implements OnNavigationListe
         switch (i){
             case 0:
                 String username = PreferencesHelper.getUserSession(this);
+                String password = PreferencesHelper.getUserPasswordSession(this);
                 Bundle bundle= new Bundle();
                 bundle.putSerializable("USERNAME",username);
+                bundle.putSerializable("PASSWORD",password);
                 fragment = new PerfilFragment();
                 fragment.setArguments(bundle);
                 break;
+
             case 1:
                 //fragment
                 break;
+
             case 2:
                 fragment = new ListPoststFragment();
                 break;
+
         }
         if(fragment!=null){
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
