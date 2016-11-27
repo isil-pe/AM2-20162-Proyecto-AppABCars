@@ -48,10 +48,7 @@ public class PerfilFragment extends Fragment {
 
     private OnNavigationListener mListener;
 
-    private EditText eteNombre;
-    private EditText eteApellido;
-    private EditText eteEmail;
-    private EditText etePassword;
+    private EditText txtNombre, txtApellido, txtEmail, txtPassword;
     private Button btnActualizarPerfil;
 
     private String nombre;
@@ -86,6 +83,7 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -95,6 +93,9 @@ public class PerfilFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
@@ -120,13 +121,18 @@ public class PerfilFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        txtNombre = ((EditText)getView().findViewById(R.id.txtNombre));
+        txtApellido = ((EditText)getView().findViewById(R.id.txtApellido));
+        txtEmail = ((EditText)getView().findViewById(R.id.txtCorreo));
+        txtPassword = ((EditText)getView().findViewById(R.id.txtContrasena));
+
         if(getArguments()!=null)
         {
             String emailPreferences = (String)getArguments().getSerializable("USERNAME");
             String passwordPreferences = (String)getArguments().getSerializable("PASSWORD");
 
-            ((EditText)getView().findViewById(R.id.txtCorreo)).setText(emailPreferences);
-            ((EditText)getView().findViewById(R.id.txtContrasena)).setText(passwordPreferences);
+            txtEmail.setText(emailPreferences);
+            txtPassword.setText(passwordPreferences);
 
             PerfilRaw perfilRaw = new PerfilRaw();
             perfilRaw.setLogin(emailPreferences);
@@ -139,8 +145,8 @@ public class PerfilFragment extends Fragment {
                     if(response.isSuccessful()){
                         lpr = response.body();
 
-                        ((EditText)getView().findViewById(R.id.txtNombre)).setText(lpr.getName());
-                        ((EditText)getView().findViewById(R.id.txtApellido)).setText(lpr.getLast_name());
+                        txtNombre.setText(lpr.getName());
+                        txtApellido.setText(lpr.getLast_name());
 
                     }else {
                         //marcasError(ERROR_MESSAGE);
@@ -162,17 +168,19 @@ public class PerfilFragment extends Fragment {
         btnActualizarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActualizarPerfil();
+                if(validateForm()){
+                    ActualizarPerfil();
+                }
             }
         });
     }
 
     public void ActualizarPerfil()
     {
-        nombre = ((EditText)getView().findViewById(R.id.txtNombre)).getText().toString();
-        apellido = ((EditText)getView().findViewById(R.id.txtApellido)).getText().toString();
-        email = ((EditText)getView().findViewById(R.id.txtCorreo)).getText().toString();
-        password = ((EditText)getView().findViewById(R.id.txtContrasena)).getText().toString();
+        nombre = txtNombre.getText().toString();
+        apellido = txtApellido.getText().toString();
+        email = txtEmail.getText().toString();
+        password = txtPassword.getText().toString();
 
         PerfilRaw perfilRaw = new PerfilRaw();
         perfilRaw.setName(nombre);
@@ -204,6 +212,36 @@ public class PerfilFragment extends Fragment {
                 //loginError(json);
             }
         });
+    }
+
+    private boolean validateForm() {
+
+        nombre = txtNombre.getText().toString();
+        apellido = txtApellido.getText().toString();
+        email = txtEmail.getText().toString();
+        password = txtPassword.getText().toString();
+
+        if(nombre.isEmpty()) {
+            txtNombre.setError("El campo nombre está vacio.");
+            return false;
+        }
+
+        if(apellido.isEmpty()) {
+            txtApellido.setError("El campo apellido está vacio.");
+            return false;
+        }
+
+        if(email.isEmpty()) {
+            txtEmail.setError("El campo email está vacio.");
+            return false;
+        }
+
+        if(password.isEmpty()) {
+            txtPassword.setError("El campo password está vacio.");
+            return false;
+        }
+
+        return true;
     }
 
 }
