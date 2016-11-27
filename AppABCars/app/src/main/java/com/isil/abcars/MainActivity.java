@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.isil.abcars.storage.PreferencesHelper;
 import com.isil.abcars.view.adapters.ListPostsAdapter;
 
+import com.isil.abcars.view.fragments.ListMarcaFragment;
 import com.isil.abcars.view.fragments.PerfilFragment;
 
 import com.isil.abcars.view.fragments.ListPoststFragment;
@@ -147,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigationListe
                 break;
 
             case 1:
-                //fragment
+                fragment = new ListMarcaFragment();
                 break;
 
             case 2:

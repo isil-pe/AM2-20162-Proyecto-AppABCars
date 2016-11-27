@@ -3,7 +3,7 @@ package com.isil.abcars.entity;
 import java.io.Serializable;
 
 /**
- * Created by lparedes on 23/11/16.
+ * Created by FranciscoParedes on 23/11/16.
  */
 
 public class MarcaEntity implements Serializable {

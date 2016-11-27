@@ -63,7 +63,7 @@ public class ApiClient {
                 "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
                 "application-type: REST"
         })
-        @POST("/v1/data/marca")
+        @GET("/v1/data/marca")
         Call<MarcaResponse> marcas();
 
 
