@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity implements OnNavigationListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //Toolbar
         toolbar = (Toolbar) findViewById(R.id.navigationToolbar);
         setSupportActionBar(toolbar);
+
 
         //Initializing NavigationView
         navigationView = (NavigationView) findViewById(R.id.navigationView);
@@ -116,6 +116,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigationListe
         if(us != null) {
             txtUsuario.setText("Bienvenido "+ us);
         }
+
+        // Mostranos el fragmento de listPosts
+        changeFragment(2);
 
     }
 

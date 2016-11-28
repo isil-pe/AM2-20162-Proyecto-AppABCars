@@ -12,8 +12,6 @@ import java.util.List;
  */
 public interface PostView {
 
-    void showLoading();
-    void hideLoading();
     Context getContext();
 
     void onMessageError(String message);

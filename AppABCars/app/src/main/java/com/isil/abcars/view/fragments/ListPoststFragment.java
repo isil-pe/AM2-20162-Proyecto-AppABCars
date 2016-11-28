@@ -2,6 +2,7 @@ package com.isil.abcars.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 import com.isil.abcars.R;
 import com.isil.abcars.entity.MarcaEntity;
 import com.isil.abcars.entity.PostEntity;
+import com.isil.abcars.presenter.PostPresenter;
+import com.isil.abcars.presenter.PostView;
 import com.isil.abcars.storage.entity.ListPostsResponse;
 import com.isil.abcars.storage.entity.MarcaResponse;
 import com.isil.abcars.storage.request.ApiClient;
@@ -25,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListPoststFragment extends Fragment {
+public class ListPoststFragment extends Fragment implements PostView{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,8 +39,11 @@ public class ListPoststFragment extends Fragment {
     private String mParam2;
 
     private ListView listPosts;
-    private PostEntity postEntity;
+    private List<PostEntity> listPostsEntities;
     private ListPostsAdapter listPostsAdapter;
+    private PostPresenter postPresenter;
+
+    private View containerListPost, containerLogin;
 
     private OnNavigationListener mListener;
 
@@ -95,47 +101,28 @@ public class ListPoststFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         listPosts = (ListView) getView().findViewById(R.id.listPosts);
+        containerListPost = getView().findViewById(R.id.containerListPost);
 
-
-        /// Traemos el listado del backeles
-        Call<ListPostsResponse> call = ApiClient.getMyApiClient().listarPosts();
-        call.enqueue(new Callback<ListPostsResponse>() {
-            @Override
-            public void onResponse(Call<ListPostsResponse> call, Response<ListPostsResponse> response) {
-                if(response.isSuccessful()){
-                    //marcasSuccess(response.body());
-                    ListPostsResponse lpr = response.body();
-                    List<PostEntity> postEntities = lpr.getData();
-
-                    listPostsAdapter = new ListPostsAdapter(getContext(), postEntities);
-                    listPosts.setAdapter(listPostsAdapter);
-
-
-                }else {
-                    //marcasError(ERROR_MESSAGE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ListPostsResponse> call, Throwable t) {
-                String json = "Error";
-                try{
-                    json = new StringBuffer().append(t.getMessage()).toString();
-                }catch (NullPointerException e) {}
-                Log.v("FRAGMENT POSTS", "json marca>>>>> " + json);
-
-                //marcasError(json);
-            }
-        });
-
-        //crudOperations= new CRUDOperations(new MyDatabase(this));
-       // postEntity =
-
-        //listPostsAdapter = new ListPostsAdapter(getContext(), postEntity);
-        //listPosts.setAdapter(listPostsAdapter);
-
+        postPresenter = new PostPresenter();
+        postPresenter.attachedView(this);
+        postPresenter.loadPosts();
 
     }
 
 
+    /*
+    * Metodos de LoginView
+    * -------------------------------------------------------------------------------------- */
+    @Override
+    public void onMessageError(String message) {
+        Snackbar snackbar = Snackbar.make(containerListPost, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    @Override
+    public void renderPost(List<PostEntity> posts) {
+        listPostsEntities = posts;
+        listPostsAdapter =  new ListPostsAdapter(getContext(), listPostsEntities);
+        listPosts.setAdapter(listPostsAdapter);
+    }
 }
