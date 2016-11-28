@@ -1,14 +1,17 @@
 package com.isil.abcars.view.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.isil.abcars.DetailPostActivity;
 import com.isil.abcars.R;
 import com.isil.abcars.entity.PostEntity;
 import com.isil.abcars.presenter.PostPresenter;
@@ -98,6 +101,17 @@ public class ListPoststFragment extends Fragment implements PostView{
         postPresenter.attachedView(this);
         postPresenter.loadPosts();
 
+        // Click en los items del listado
+        listPosts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                PostEntity postEntity = (PostEntity) parent.getAdapter().getItem(position);
+                postPresenter.goToDetail(postEntity);
+
+            }
+        });
+
     }
 
 
@@ -116,4 +130,14 @@ public class ListPoststFragment extends Fragment implements PostView{
         listPostsAdapter =  new ListPostsAdapter(getContext(), listPostsEntities);
         listPosts.setAdapter(listPostsAdapter);
     }
+
+    @Override
+    public void gotToDetail(PostEntity postEntity) {
+        Intent intent = new Intent(getContext(), DetailPostActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("POST_ENTITY", postEntity);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
 }

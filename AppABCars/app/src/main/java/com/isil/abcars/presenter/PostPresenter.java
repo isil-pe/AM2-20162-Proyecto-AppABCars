@@ -34,10 +34,10 @@ public class PostPresenter {
             @Override
             public void onResponse(Call<ListPostsResponse> call, Response<ListPostsResponse> response) {
                 if(response.isSuccessful()){
-                    PostSuccess(response.body());
+                    postSuccess(response.body());
 
                 }else {
-                    PostError(ERROR_MESSAGE);
+                    postError(ERROR_MESSAGE);
                 }
             }
 
@@ -49,20 +49,24 @@ public class PostPresenter {
                 }catch (NullPointerException e) {}
                 Log.v("FRAGMENT POSTS", "json marca>>>>> " + json);
 
-                PostError(json);
+                postError(json);
             }
         });
 
     }
 
-    private void PostSuccess(ListPostsResponse listPostsResponse){
+    public void postSuccess(ListPostsResponse listPostsResponse){
         if(listPostsResponse != null) {
             List<PostEntity> posts = listPostsResponse.getData();
             postView.renderPost(posts);
         }
     }
 
-    private void PostError(String messageError){
+    public void postError(String messageError){
         postView.onMessageError(messageError);
+    }
+
+    public void goToDetail(PostEntity postEntity){
+        postView.gotToDetail(postEntity);
     }
 }

@@ -1,5 +1,6 @@
 package com.isil.abcars.storage.request;
 
+import com.isil.abcars.storage.entity.DetailResponse;
 import com.isil.abcars.storage.entity.ListPostsResponse;
 import com.isil.abcars.storage.entity.LoginRaw;
 import com.isil.abcars.storage.entity.LoginResponse;
@@ -63,7 +64,7 @@ public class ApiClient {
                 "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
                 "application-type: REST"
         })
-        @GET("/v1/data/marca")
+        @GET("/v1/data/marca?pageSize=20")
         Call<MarcaResponse> marcas();
 
 
@@ -102,8 +103,18 @@ public class ApiClient {
                 "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
                 "application-type: REST"
         })
-        @GET("/v1/data/post")
+        @GET("/v1/data/post?pageSize=20")
         Call<ListPostsResponse> listarPosts();
+
+
+        @Headers({
+                "Content-Type: application/json",
+                "application-id: 80BC9F6A-858E-0D7B-FFC8-521538D16100",
+                "secret-key: A0DBF8ED-09B6-F356-FF2F-9246519D3400",
+                "application-type: REST"
+        })
+        @GET("/v1/data/post/{id}")
+        Call<DetailResponse> getPostDetail(@Body String id);
 
 
     }

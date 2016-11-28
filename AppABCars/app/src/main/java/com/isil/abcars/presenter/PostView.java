@@ -16,5 +16,6 @@ public interface PostView {
 
     void onMessageError(String message);
     void renderPost(List<PostEntity> posts);
+    void gotToDetail(PostEntity postEntity);
 
 }
