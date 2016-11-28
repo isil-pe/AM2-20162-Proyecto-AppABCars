@@ -2,8 +2,8 @@ package com.isil.abcars.view.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +11,14 @@ import android.widget.GridView;
 
 import com.isil.abcars.R;
 import com.isil.abcars.entity.MarcaEntity;
-import com.isil.abcars.storage.entity.MarcaResponse;
-import com.isil.abcars.storage.request.ApiClient;
+import com.isil.abcars.presenter.MarcaPresenter;
+import com.isil.abcars.presenter.MarcaView;
 import com.isil.abcars.view.adapters.ListMarcaAdapter;
 import com.isil.abcars.view.listeners.OnNavigationListener;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-
-public class ListMarcaFragment extends Fragment {
+public class ListMarcaFragment extends Fragment implements MarcaView{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -34,10 +29,13 @@ public class ListMarcaFragment extends Fragment {
     private String mParam2;
 
     private GridView listMarca;
-    private MarcaEntity marcaEntity;
+    private List<MarcaEntity> marcaEntities;
     private ListMarcaAdapter listMarcaAdapter;
+    private MarcaPresenter marcaPresenter;
 
     private OnNavigationListener mListener;
+
+    private View containerMarcas;
 
     public ListMarcaFragment() {
         // Required empty public constructor
@@ -99,35 +97,27 @@ public class ListMarcaFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         listMarca = (GridView) getView().findViewById(R.id.listMarca);
+        containerMarcas = getView().findViewById(R.id.containerMarcas);
 
-        /// Traemos el listado del backeles
-        Call<MarcaResponse> call = ApiClient.getMyApiClient().marcas();
-        call.enqueue(new Callback<MarcaResponse>() {
-            @Override
-            public void onResponse(Call<MarcaResponse> call, Response<MarcaResponse> response) {
-                if(response.isSuccessful()){
-                    //marcasSuccess(response.body());
-                    MarcaResponse lpr = response.body();
-                    List<MarcaEntity> marcaEntities = lpr.getData();
+        marcaPresenter = new MarcaPresenter();
+        marcaPresenter.attachedView(this);
+        marcaPresenter.loadMarcas();
 
-                    listMarcaAdapter = new ListMarcaAdapter(getContext(), marcaEntities);
-                    listMarca.setAdapter(listMarcaAdapter);
-
-                }else {
-                    //marcasError(ERROR_MESSAGE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MarcaResponse> call, Throwable t) {
-                String json = "Error";
-                try{
-                    json = new StringBuffer().append(t.getMessage()).toString();
-                }catch (NullPointerException e) {}
-                Log.v("FRAGMENT MARCAS", "json marca>>>>> " + json);
-                //marcasError(json);
-            }
-        });
     }
 
+    /*
+    * Metodos de MArcaView
+    * -------------------------------------------------------------------------------------- */
+    @Override
+    public void onMessageError(String message) {
+        Snackbar snackbar = Snackbar.make(containerMarcas, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    @Override
+    public void renderMarca(List<MarcaEntity> marcas) {
+        marcaEntities = marcas;
+        listMarcaAdapter =  new ListMarcaAdapter(getContext(), marcaEntities);
+        listMarca.setAdapter(listMarcaAdapter);
+    }
 }

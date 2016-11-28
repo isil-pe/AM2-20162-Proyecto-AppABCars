@@ -4,29 +4,20 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.isil.abcars.R;
-import com.isil.abcars.entity.MarcaEntity;
 import com.isil.abcars.entity.PostEntity;
 import com.isil.abcars.presenter.PostPresenter;
 import com.isil.abcars.presenter.PostView;
-import com.isil.abcars.storage.entity.ListPostsResponse;
-import com.isil.abcars.storage.entity.MarcaResponse;
-import com.isil.abcars.storage.request.ApiClient;
 import com.isil.abcars.view.adapters.ListPostsAdapter;
 import com.isil.abcars.view.listeners.OnNavigationListener;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ListPoststFragment extends Fragment implements PostView{
     // TODO: Rename parameter arguments, choose names that match
@@ -111,7 +102,7 @@ public class ListPoststFragment extends Fragment implements PostView{
 
 
     /*
-    * Metodos de LoginView
+    * Metodos de PostsView
     * -------------------------------------------------------------------------------------- */
     @Override
     public void onMessageError(String message) {

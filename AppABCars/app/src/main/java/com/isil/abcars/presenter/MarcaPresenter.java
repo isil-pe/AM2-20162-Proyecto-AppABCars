@@ -5,6 +5,7 @@ import android.util.Log;
 import com.isil.abcars.entity.MarcaEntity;
 import com.isil.abcars.storage.entity.MarcaResponse;
 import com.isil.abcars.storage.request.ApiClient;
+import com.isil.abcars.view.adapters.ListMarcaAdapter;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class MarcaPresenter {
     }
 
     public void loadMarcas(){
-        marcaView.showLoading();
+
 
         Call<MarcaResponse> call = ApiClient.getMyApiClient().marcas();
         call.enqueue(new Callback<MarcaResponse>() {
@@ -48,17 +49,14 @@ public class MarcaPresenter {
                 try{
                     json = new StringBuffer().append(t.getMessage()).toString();
                 }catch (NullPointerException e) {}
-                Log.v(TAG, "json marca>>>>> " + json);
-
-                 marcasError(json);
+                Log.v("FRAGMENT MARCAS", "json marca>>>>> " + json);
+                marcasError(json);
             }
         });
 
     }
 
     private void marcasSuccess(MarcaResponse marcaResponse){
-        marcaView.hideLoading();
-
         if(marcaResponse != null) {
             List<MarcaEntity> marcas = marcaResponse.getData();
             marcaView.renderMarca(marcas);
@@ -66,7 +64,6 @@ public class MarcaPresenter {
     }
 
     private void marcasError(String messageError){
-        marcaView.hideLoading();
         marcaView.onMessageError(messageError);
     }
 
