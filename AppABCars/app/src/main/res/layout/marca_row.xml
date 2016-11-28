@@ -6,22 +6,21 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="200dp"
         android:background="#ffffff">
 
         <ImageView
-            android:id="@+id/ivPost"
+            android:id="@+id/ivMarca"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_launcher"
+            android:layout_height="160dp"
             android:layout_gravity="top|center"
-            android:scaleType="fitCenter"/>
+            android:src="@mipmap/ic_launcher"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorAccent"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:padding="10dp">
@@ -35,21 +34,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtPrecio"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:text="test"
-                    android:textSize="25sp" />
-
-                <TextView
                     android:id="@+id/txtMarca"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
-                    android:text="test"
-                    android:textSize="18sp"/>
-
+                    android:text="marca"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 

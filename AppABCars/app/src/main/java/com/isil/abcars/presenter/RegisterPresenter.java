@@ -56,7 +56,6 @@ public class RegisterPresenter {
                 } else {
                     loginError(ERROR_MESSAGE);
                 }
-
             }
 
             @Override

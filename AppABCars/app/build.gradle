@@ -21,18 +21,16 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //RETROFIT https://github.com/square/retrofit
+    //GSON https://github.com/google/gson
+    //INTERCEPTOR
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
-
-    //RETROFIT https://github.com/square/retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
-
-    //GSON https://github.com/google/gson
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-
-    //INTERCEPTOR
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
 }
