@@ -1,12 +1,7 @@
 package com.isil.abcars.view.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +13,6 @@ import com.isil.abcars.R;
 import com.isil.abcars.entity.PostEntity;
 import com.isil.abcars.utils.BitmapManage;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +26,12 @@ public class ListPostsAdapter extends BaseAdapter{
     public ListPostsAdapter(Context context, List<PostEntity> lsNoteEntities) {
         this.context = context;
         this.lsPostEntities = lsNoteEntities;
+
+        // Image Placeholder
+        BitmapManage.getInstance().setPlaceholder(BitmapFactory.decodeResource(
+                context.getResources(), R.drawable.placeholdercar
+        ));
+
     }
 
     @Override

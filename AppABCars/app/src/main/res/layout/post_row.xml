@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/ivPost"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="240dp"
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="top|center"
             android:scaleType="fitCenter"/>

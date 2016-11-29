@@ -1,6 +1,7 @@
 package com.isil.abcars.view.adapters;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,6 @@ import android.widget.TextView;
 
 import com.isil.abcars.R;
 import com.isil.abcars.entity.MarcaEntity;
-import com.isil.abcars.entity.PostEntity;
 import com.isil.abcars.utils.BitmapManage;
 
 import java.util.List;
@@ -26,6 +26,12 @@ public class ListMarcaAdapter extends BaseAdapter{
     public ListMarcaAdapter(Context context, List<MarcaEntity> lsMarcaEntities) {
         this.context = context;
         this.lsMarcaEntities = lsMarcaEntities;
+
+        // Image Placeholder
+        BitmapManage.getInstance().setPlaceholder(BitmapFactory.decodeResource(
+                context.getResources(), R.drawable.placeholdercar
+        ));
+
     }
 
     @Override

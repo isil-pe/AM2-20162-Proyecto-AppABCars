@@ -42,7 +42,7 @@ tools:context=".DetailPostActivity">
 
 
             <LinearLayout
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
@@ -179,7 +179,7 @@ tools:context=".DetailPostActivity">
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal">
 
@@ -195,7 +195,7 @@ tools:context=".DetailPostActivity">
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_weight="1"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center_vertical|center_horizontal"
             android:orientation="horizontal">
 
