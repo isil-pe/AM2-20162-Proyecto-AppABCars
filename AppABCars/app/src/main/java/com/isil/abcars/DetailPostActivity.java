@@ -21,8 +21,17 @@ import com.isil.abcars.utils.BitmapManage;
 
 public class DetailPostActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    TextView txtPrecio, txtMarca, txtTitulo, txtDesc, txtAnio, txtKM, txtCilindrada,
-            txtCombustible, txtTransmision, txtColor, txtPuertas;
+    TextView txtPrecio;
+    TextView txtMarca;
+    TextView txtTitulo;
+    TextView txtDesc;
+    TextView txtAnio;
+    TextView txtKM;
+    TextView txtCilindrada;
+    TextView txtCombustible;
+    TextView txtTransmision;
+    TextView txtColor;
+    TextView txtPuertas;
     ImageView ivPost;
     PostEntity postEntity;
     Intent intent;
@@ -98,7 +107,6 @@ public class DetailPostActivity extends AppCompatActivity implements OnMapReadyC
                 .icon(BitmapDescriptorFactory
                         .fromResource(R.drawable.ic_puntero))
                 .position(sydney));
-
 
     }
 }
