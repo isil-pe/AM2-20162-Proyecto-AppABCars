@@ -24,6 +24,15 @@ public class PostEntity implements Serializable{
     private String puertas;
     private String titulo;
     private String transmision;
+    private String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
     public String getAnio() {
         return anio;

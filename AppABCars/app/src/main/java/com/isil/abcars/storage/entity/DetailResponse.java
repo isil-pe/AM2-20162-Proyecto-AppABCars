@@ -28,6 +28,15 @@ public class DetailResponse {
     private String transmision;
     private String anio;
     private String desc;
+    private String telefono;
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
 
     public String getType() {
         return type;
