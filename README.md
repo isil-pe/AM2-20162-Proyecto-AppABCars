@@ -1,11 +1,3 @@
-
-
-
-Integrates:
-- Marco Tejeda
-- Mauricio Medina
-- Francisco Paredes
-
 # AM2-20162-Proyecto-AppABCars
 Moviles 2, Proyecto final - Isil 2016-2
 
@@ -48,19 +40,19 @@ String objectMarca | String logo | String objectMarca | String login
 String anio | String marca | String nombre | String last_name 
 String cilindrada | String modelo |  | String name 
 String color |  |  | String password 
-String combustible
-String desc
-String foto
-String km
-String latitud
-String longitud
-String marca
-String modelo
-String precio
-String puertas
-String telefono
-String titulo
-String transmision
+String combustible |  |  |
+String desc |  |  |
+String foto |  |  |
+String km |  |  |
+String latitud |  |  |
+String longitud |  |  |
+String marca |  |  |
+String modelo |  |  |
+String precio |  |  |
+String puertas |  |  |
+String telefono |  |  |
+String titulo |  |  |
+String transmision |  |  |
 
 
 
