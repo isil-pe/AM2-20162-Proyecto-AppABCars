@@ -54,6 +54,6 @@ String transmision |  |  |
 
 ![](https://github.com/isil-pe/AM2-20162-Proyecto-AppABCars/blob/master/diagrama_moviles.jpg)
 
-## Usuerio de prueba
+## Usuario de prueba
 - us: cr7@isil.pe
 - ps: 1234567
