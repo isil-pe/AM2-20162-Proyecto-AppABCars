@@ -57,3 +57,10 @@ String transmision |  |  |
 ## Usuario de prueba
 - us: cr7@isil.pe
 - ps: 1234567
+
+## Capturas Backendless
+![] (https://raw.githubusercontent.com/isil-pe/AM2-20162-Proyecto-AppABCars/master/bd_captura0.png)
+![] (https://raw.githubusercontent.com/isil-pe/AM2-20162-Proyecto-AppABCars/master/bd_captura1.png)
+![] (https://raw.githubusercontent.com/isil-pe/AM2-20162-Proyecto-AppABCars/master/bd_captura2.png)
+![] (https://raw.githubusercontent.com/isil-pe/AM2-20162-Proyecto-AppABCars/master/bd_captura3.png)
+![] (https://raw.githubusercontent.com/isil-pe/AM2-20162-Proyecto-AppABCars/master/bd_captura4.png)
