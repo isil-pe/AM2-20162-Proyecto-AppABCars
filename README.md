@@ -14,18 +14,12 @@ Moviles 2, Proyecto final - Isil 2016-2
   ABCcars es una app que permite realizar busquedas de vehículos en venta y poder contactar con el vendedor.
   
   Funcionalidades :
-  
-    - Autenticación (Login)
-    
-    - Registro de usuario
-    
-    - Mostrar listado de vehículos y marcas
-    
-    - Mostrar ubicación del vendedor en el mapa
-    
-    - Administracion del perfil de usuario
-    
-    - Contactar con el vendedor
+  - Autenticación (Login)
+  - Registro de usuario
+  - Mostrar listado de vehículos y marcas
+  - Mostrar ubicación del vendedor en el mapa
+  - Administracion del perfil de usuario
+  - Contactar con el vendedor
     
 ## Base de Datos 
 
